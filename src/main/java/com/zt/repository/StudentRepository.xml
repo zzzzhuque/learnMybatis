@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zt.repository.StudentRepository">
+    <resultMap id="studentMap" type="com.zt.entity.Student">
+        <!-- 主键用id -->
+        <id column="id" property="id" ></id>
+        <!-- 非主键用result -->
+        <result column="name" property="name"></result>
+        <!-- 类用association -->
+        <association property="classes" javaType="com.zt.entity.Classes">
+            <!-- 主键用id -->
+            <id column="cid" property="id" ></id>
+            <!-- 非主键用result -->
+            <result column="cname" property="name"></result>
+        </association>
+    </resultMap>
+
+    <select id="findById" parameterType="long" resultMap="studentMap">
+        select s.id, s.name, c.id as cid, c.name as cname from student as s, classes as c where s.id=#{id} and s.cid=c.id
+    </select>
+</mapper>

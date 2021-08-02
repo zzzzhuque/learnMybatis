@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zt.repository.CustomerRepository">
+    <resultMap id="customerMap" type="com.zt.entity.Customer">
+        <!-- 主键用id -->
+        <id column="cid" property="id" ></id>
+        <!-- 非主键用result -->
+        <result column="cname" property="name"></result>
+        <!-- 类用association -->
+        <collection property="goods" ofType="com.zt.entity.Goods">
+            <!-- 主键用id -->
+            <id column="gid" property="id" ></id>
+            <!-- 非主键用result -->
+            <result column="gname" property="name"></result>
+        </collection>
+    </resultMap>
+
+    <select id="findById" parameterType="long" resultMap="customerMap">
+        select c.id as cid, c.name as cname, g.id as gid, g.name as gname from customer as c, goods as g, customer_goods as cg where c.id = #{id} and cg.cid = c.id and cg.gid = g.id
+    </select>
+</mapper>

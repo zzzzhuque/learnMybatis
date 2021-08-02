@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zt.repository.ClassesRepository">
+    <resultMap id="ClassesMap" type="com.zt.entity.Classes">
+        <!-- 主键用id -->
+        <id column="cid" property="id" ></id>
+        <!-- 非主键用result -->
+        <result column="cname" property="name"></result>
+        <!-- 多个类用association -->
+        <collection property="students" ofType="com.zt.entity.Student">
+            <id column="id" property="id"></id>
+            <result column="name" property="name"></result>
+        </collection>
+    </resultMap>
+
+    <select id="findById" parameterType="long" resultMap="ClassesMap">
+        select s.id, s.name, c.id as cid, c.name as cname from student as s, classes as c where c.id=#{id} and s.cid=c.id
+    </select>
+</mapper>
