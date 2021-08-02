@@ -41,4 +41,60 @@
     <select id="findNameById" parameterType="long" resultType="java.lang.String">
         select username from t_account where id = #{id}
     </select>
+
+<!--    <select id="findByAccount" parameterType="com.zt.entity.Account" resultType="com.zt.entity.Account">-->
+<!--        select * from t_account-->
+<!--        <where>-->
+<!--            <if test="id!=0">-->
+<!--                id=#{id}-->
+<!--            </if>-->
+<!--            <if test="username!=null">-->
+<!--                and username=#{username}-->
+<!--            </if>-->
+<!--            <if test="password!=null">-->
+<!--                and password=#{password}-->
+<!--            </if>-->
+<!--            <if test="age!=0">-->
+<!--                and age=#{age}-->
+<!--            </if>-->
+<!--        </where>-->
+<!--    </select>-->
+
+<!--    <select id="findByAccount" parameterType="com.zt.entity.Account" resultType="com.zt.entity.Account">-->
+<!--        select * from t_account-->
+<!--        <where>-->
+<!--            <choose>-->
+<!--                <when test="id!=0">-->
+<!--                    id = #{id}-->
+<!--                </when>-->
+<!--                <when test="username!=null">-->
+<!--                    username = #{username}-->
+<!--                </when>-->
+<!--                <when test="password!=null">-->
+<!--                    password = #{password}-->
+<!--                </when>-->
+<!--                <when test="age!=0">-->
+<!--                    age=#{age}-->
+<!--                </when>-->
+<!--            </choose>-->
+<!--        </where>-->
+<!--    </select>-->
+
+    <select id="findByAccount" parameterType="com.zt.entity.Account" resultType="com.zt.entity.Account">
+        select * from t_account
+        <trim prefix="where" prefixOverrides="and">
+            <if test="id!=0">
+                id=#{id}
+            </if>
+            <if test="username!=null">
+                and username=#{username}
+            </if>
+            <if test="password!=null">
+                and password=#{password}
+            </if>
+            <if test="age!=0">
+                and age=#{age}
+            </if>
+        </trim>
+    </select>
 </mapper>

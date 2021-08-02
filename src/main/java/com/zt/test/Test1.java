@@ -244,4 +244,19 @@ public class Test1 {
         System.out.println(goods);
         sqlSession.close();
     }
+
+    @Test
+    public void testFindByAccount() {
+        InputStream inputStream = Test1.class.getClassLoader().getResourceAsStream("config.xml");
+        SqlSessionFactoryBuilder sqlSessionFactoryBuilder = new SqlSessionFactoryBuilder();
+        SqlSessionFactory sqlSessionFactory = sqlSessionFactoryBuilder.build(inputStream);
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+
+        // 获取实现接口的代理对象
+        AccountRepository accountRepository = sqlSession.getMapper(AccountRepository.class);
+        Account account = new Account(4L, null, "985723", 23);
+        Account account1 = accountRepository.findByAccount(account);
+        System.out.println(account1);
+        sqlSession.close();
+    }
 }
