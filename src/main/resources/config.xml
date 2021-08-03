@@ -25,5 +25,7 @@
         <mapper resource="com/zt/repository/ClassesRepository.xml"></mapper>
         <mapper resource="com/zt/repository/CustomerRepository.xml"></mapper>
         <mapper resource="com/zt/repository/GoodsRepository.xml"></mapper>
+        <!-- mbg生成的xml -->
+        <mapper resource="com/mbg/repository/UserMapper.xml"></mapper>
     </mappers>
 </configuration>
