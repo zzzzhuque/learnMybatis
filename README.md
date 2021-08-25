@@ -96,7 +96,7 @@ package com.zt.entity;
 import lombok.Data;
 
 @Data
-public class account {
+public class Account {
     private long id;
     private String username;
     private String password;
@@ -323,4 +323,8 @@ public void testUserDefineInterfaceSelectAll() {
 
 # Ref
 
-1、https://www.bilibili.com/video/BV1V7411w7VW?from=search&seid=13599583476053237383
+1、mybatis视频教程：https://www.bilibili.com/video/BV1V7411w7VW?from=search&seid=13599583476053237383
+
+2、mysql索引：https://www.bilibili.com/video/BV19y4y127h4?p=3&spm_id_from=pageDriver
+
+3、mysql全讲解：https://time.geekbang.org/column/intro/139
